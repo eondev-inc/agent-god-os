@@ -11,6 +11,7 @@ services:
       - ~/Documentos/Proyectos:/proyectos:z
       - ~/.config/opencode:/home/agent/.config/opencode:z
       - ~/.local/share/opencode:/home/agent/.local/share/opencode:z
+      - ~/.local/state/opencode:/home/agent/.local/state/opencode:z
       - ~/.engram:/home/agent/.engram:z
       - /var/run/docker.sock:/var/run/docker.sock:z
     command: tail -f /dev/null
