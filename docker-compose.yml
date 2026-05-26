@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  opencode-sandbox:
+    build: .
+    container_name: opencode_sandbox
+    hostname: agent-god-os
+    user: agent
+    working_dir: /proyectos
+    volumes:
+      - ~/Documentos/Proyectos:/proyectos:z
+      - ~/.config/opencode:/home/agent/.config/opencode:z
+      - ~/.local/share/opencode:/home/agent/.local/share/opencode:z
+      - ~/.engram:/home/agent/.engram:z
+      - /var/run/docker.sock:/var/run/docker.sock:z
+    command: tail -f /dev/null
