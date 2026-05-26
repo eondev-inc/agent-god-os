@@ -7,12 +7,12 @@ services:
     hostname: agent-god-os
     user: agent
     working_dir: /proyectos
+    environment:
+      - HOST_USER=${HOST_USER}
     volumes:
       - ${PROJECTS_DIR}:/proyectos${VOLUME_OPTS}
       - ${HOST_HOME}/.config/opencode:/home/agent/.config/opencode${VOLUME_OPTS}
-      - ${HOST_HOME}/.config/opencode:/home/${HOST_USER}/.config/opencode:ro
       - ${HOST_HOME}/.local/share/opencode:/home/agent/.local/share/opencode${VOLUME_OPTS}
       - ${HOST_HOME}/.local/state/opencode:/home/agent/.local/state/opencode${VOLUME_OPTS}
       - ${HOST_HOME}/.engram:/home/agent/.engram${VOLUME_OPTS}
       - ${DOCKER_SOCK}:/var/run/docker.sock${VOLUME_OPTS}
-    command: tail -f /dev/null

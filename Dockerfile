@@ -51,4 +51,11 @@ ENV PATH="/home/agent/.opencode/bin:/home/agent/.local/bin:${PATH}"
 
 WORKDIR /proyectos
 
+# Entrypoint crea symlinks para rutas absolutas del host user en opencode.json
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+USER root
+RUN chmod +x /usr/local/bin/entrypoint.sh
+USER agent
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["tail", "-f", "/dev/null"]
