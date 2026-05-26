@@ -47,7 +47,7 @@ WORKDIR /home/agent
 RUN curl -fsSL https://opencode.ai/install | bash
 
 # Asegurar que el PATH del agent incluya el binario de opencode (que suele instalarse en ~/.opencode/bin o ~/.local/bin)
-ENV PATH="/home/agent/.opencode/bin:/home/agent/.local/bin:${PATH}"
+ENV PATH="/home/agent/.opencode/bin:/home/agent/.local/bin:/usr/local/bin:${PATH}"
 
 WORKDIR /proyectos
 

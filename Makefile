@@ -47,6 +47,8 @@ setup:
 	@mkdir -p $(HOST_HOME)/.local/share/opencode
 	@mkdir -p $(HOST_HOME)/.engram
 	@mkdir -p $(PROJECTS_DIR)
+	@chmod 755 $(HOST_HOME)/.engram
+	@chmod -f 664 $(HOST_HOME)/.engram/*.db $(HOST_HOME)/.engram/*.db-shm $(HOST_HOME)/.engram/*.db-wal 2>/dev/null || true
 
 up: setup
 	docker compose up -d --build
