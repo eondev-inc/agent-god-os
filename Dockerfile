@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     sudo \
     docker.io \
-    docker-compose-v2 \
+    docker-compose \
     jq \
     tar \
     && rm -rf /var/lib/apt/lists/*
