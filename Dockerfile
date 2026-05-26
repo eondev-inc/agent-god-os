@@ -16,7 +16,13 @@ RUN apt-get update && apt-get install -y \
 # Crear usuario agent sin root y con permisos sudo
 RUN useradd -m -s /bin/bash agent && \
     echo "agent ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    usermod -aG docker agent
+    usermod -aG docker agent && \
+    mkdir -p /home/agent/.local/state \
+             /home/agent/.local/share \
+             /home/agent/.local/bin \
+             /home/agent/.config/opencode \
+             /home/agent/.engram && \
+    chown -R agent:agent /home/agent
 
 # Instalar Engram (Última versión)
 RUN curl -s https://api.github.com/repos/Gentleman-Programming/engram/releases/latest | \
