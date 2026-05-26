@@ -24,4 +24,19 @@ if [ -n "$HOST_USER" ] && [ "$HOST_USER" != "agent" ]; then
   fi
 fi
 
+# Cubrir rutas absolutas de herramientas instaladas vía Homebrew en macOS
+# opencode.json puede tener "command": ["/opt/homebrew/bin/engram", ...]
+# Esos paths no existen en Debian — symlinks los resuelven al binario nativo.
+BREW_BIN="/opt/homebrew/bin"
+if [ ! -d "$BREW_BIN" ]; then
+  sudo mkdir -p "$BREW_BIN"
+fi
+for tool in engram gentle-ai; do
+  BREW_PATH="${BREW_BIN}/${tool}"
+  NATIVE_PATH="/usr/local/bin/${tool}"
+  if [ ! -e "$BREW_PATH" ] && [ -f "$NATIVE_PATH" ]; then
+    sudo ln -sf "$NATIVE_PATH" "$BREW_PATH"
+  fi
+done
+
 exec "$@"
